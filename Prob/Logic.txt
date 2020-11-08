@@ -1,0 +1,90 @@
+LOG:	X:1   Y:0
+
+LOG:	X:2   Y:0
+
+LOG:	X:3   Y:0
+
+LOG:	X:4   Y:0
+
+LOG:	X:5   Y:0
+
+LOG:	X:6   Y:0
+
+LOG:	X:7   Y:0
+
+LOG:	X:7   Y:1
+
+LOG:	Player took the money!:)
+ Now money:1
+
+LOG:	X:7   Y:2
+
+LOG:	X:7   Y:3
+
+LOG:	X:7   Y:4
+
+LOG:	X:7   Y:5
+
+LOG:	X:7   Y:6
+
+LOG:	X:8   Y:6
+
+LOG:	Player lost the live!:(
+ Now live:2
+
+LOG:	X:8   Y:5
+
+LOG:	X:8   Y:4
+
+LOG:	X:8   Y:3
+
+LOG:	X:8   Y:2
+
+LOG:	X:8   Y:1
+
+LOG:	X:8   Y:0
+
+LOG:	X:9   Y:0
+
+LOG:	X:10   Y:0
+
+LOG:	X:11   Y:0
+
+LOG:	Player lost the live!:(
+ Now live:1
+
+LOG:	X:10   Y:0
+
+LOG:	X:9   Y:0
+
+LOG:	X:8   Y:0
+
+LOG:	X:7   Y:0
+
+LOG:	X:6   Y:0
+
+LOG:	X:5   Y:0
+
+LOG:	X:4   Y:0
+
+LOG:	X:3   Y:0
+
+LOG:	X:2   Y:0
+
+LOG:	X:1   Y:0
+
+LOG:	X:2   Y:0
+
+LOG:	X:2   Y:1
+
+LOG:	X:2   Y:2
+
+LOG:	X:2   Y:3
+
+LOG:	X:2   Y:4
+
+LOG:	Player lost the live!:(
+ Now live:0
+Stone kill player!
+YOU LOSE!
+
