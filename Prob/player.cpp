@@ -17,16 +17,24 @@ int Player::GetMoney(){
     return money;
 }
 
-int Player::Put_Money(){
+void Player::Put_Money(){
     money++;
     log->money(money);
-    return money;
 }
 
-int Player::Pull_Live(){
+void Player::Pull_Money(){
+    money--;
+    log->money(money);
+}
+
+void Player::Pull_Live(){
     live--;
     log->live(live);
-    return live;
+}
+
+void Player::start(){
+    x_now = 0;
+    y_now = 0;
 }
 
 int Player::GetX(){

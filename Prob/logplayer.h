@@ -1,16 +1,12 @@
 #ifndef LOGPLAYER_H
 #define LOGPLAYER_H
 
-//#include <iostream>
-//#include "logfile.h"
+#include <iostream>
 
-//using namespace std;
-
-//class logfile;
+using namespace std;
 
 class Player;
-//class observer_act;
-class observer_killed;
+
 class LogPlayer{
     public:
         LogPlayer(Player *player);
@@ -20,8 +16,6 @@ class LogPlayer{
 
     private:
         Player *player;
-        //ObserverAct *Act;
-        observer_killed *Killed;
         void addToFile(std::string str);
 };
 

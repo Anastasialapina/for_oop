@@ -2,8 +2,6 @@
 #define OBSERVER_KILLED_H
 #include "observer.h"
 
-class logfile;
-
 class observer_killed:public Observer
 {
     public:

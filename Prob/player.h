@@ -11,7 +11,7 @@ class LogPlayer;
 
 class Player
 {
-public:
+private:
     int x_now;
     int y_now;
     int money;
@@ -19,17 +19,19 @@ public:
     bool tele = true;
     LogPlayer* log;
     
-/*public:*/
-    friend class game;
+public:
+    friend class Game;
     Player();
     int GetLive();
     int GetMoney();
     int GetX();
     int GetY();
-    int Put_Money(); //добавить монет
-    int Pull_Live(); //уменьшить жизни
+    void Put_Money(); //добавить монет
+    void Pull_Money();
+    void Pull_Live(); //уменьшить жизни
     void Go(int x_go, int y_go);
     void teleport();
+    void start();
     friend ostream& operator<<(ostream & out, Player& player);
 
 };

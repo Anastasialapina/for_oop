@@ -1,5 +1,5 @@
 #include "observer_act.h"
-#include "logfile.h"
+#include "element.h"
 
 void observer_act::update()   
 {

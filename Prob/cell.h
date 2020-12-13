@@ -10,10 +10,11 @@ private:
     int yn;
 public:
     int size = 70;
-    enum type {o, s, m, t, i, e};
+    enum type {o, s, m, t, i, e, vrag};
     type Tip;
     Cell();
     ~Cell(){};
 };
+
 
 #endif // CELL_H

@@ -1,6 +1,5 @@
 #include "observer_killed.h"
-//#include "element.h"
-#include "logfile.h"
+#include "element.h"
 
 void observer_killed::update()
 {

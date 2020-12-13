@@ -1,6 +1,5 @@
 #include "logfile.h"
 #include "logplayer.h"
-#include "observer_killed.h"
 
 
 LogPlayer::LogPlayer(Player* player)
@@ -23,7 +22,6 @@ void LogPlayer::live(int live)  //при уменьшении жизней
     std::string str = "Player lost the live!:(\n Now live:"+ std::to_string(live)+'\n'+"Stone kill player!\nYOU LOSE!\n";
     std::cout<<str;
         addToFile(str);
-        Killed->update();       //!!!!!!здесь ошибка
     }
     else{
         std::string str = "Player lost the live!:(\n Now live:"+ to_string(live)+'\n';

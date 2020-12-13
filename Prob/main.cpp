@@ -1,8 +1,3 @@
-//#include <SFML/Graphics.hpp>
-//#include <iostream>
-//#include "cell.h"
-//#include "square.h"
-//#include "squareiterator.h"
 #include "game.h"
 
 int main()

@@ -1,8 +1,11 @@
 #ifndef OBSERVER_H
 #define OBSERVER_H
-#include <iostream> 
+#include <iostream>
+#include "logfile.h"
+#include "element.h" 
 
 class element;
+
 class Observer
 {
 public:
