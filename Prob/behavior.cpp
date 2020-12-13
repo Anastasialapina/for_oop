@@ -1,6 +1,5 @@
 #include "behavior.h"
 
-
 void Behavior::live(){
 
     player.Pull_Live();
