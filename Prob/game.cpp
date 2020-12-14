@@ -17,50 +17,141 @@ void Game::CreateSquare(){
    cout<<"Начать новую игру - 1, старую 0\n";
    int choose;
    cin>> choose;
-   safe safe(choose);
-/* if(!feof(safe->*outputFile))
-{
-    cout<<"GGG";
-}  */
-    if (choose==0)
-        safe.check();
+   int check = 5;
+   std::string arr[19];
+    if (choose==0){
+        run run;
+        cout<<"OK\n";
+        check = run.check();
+        if (check==1){
+            run.starting(arr);
+            cout<< arr[3][1] <<"\n";
+            player.money = (int)arr[1][1] - 48;
+            player.live = (int) arr[3][1] - 48;
+            player.x_now = (int) arr[5][1] - 48;
+            player.y_now = (int) arr[5][3] - 48;
+        }
+    }
     
-    
-    
-    
+    safe safe; 
     sf::RenderWindow window(sf::VideoMode(x*size+22+150, y*size+28), "Game created by Lapina Anastasia");
-    
+    int x_e1, x_e2, x_e3, y_e1, y_e2, y_e3;
     rect = new sf::RectangleShape *[x];
     for (int i = 0; i < x; i++) {
-    	rect[i] = new sf::RectangleShape[y];
+    	rect[i] = new sf::RectangleShape[y];	
+ 
+    	if(choose==0&&check==1){
+    	for (int j = 0; j < y; j++) {
+    	//вход
+    	  if(arr[j+6][i]=='i'){
+               square->obj[0][0]->Tip=square->obj[0][0]->i;
+            	continue;
+      	   }
+          //выход
+          if(arr[j+6][i]=='e'){
+              square->obj[i][j]->Tip=square->obj[i][j]->e;
+              continue;
+          }
+      	 //монеты
+      	 if (arr[j+6][i]=='m'){
+             square->obj[i][j]->Tip=square->obj[i][j]->m;
+             continue;
+     	  }
+      	 //камни
+      	 if (arr[j+6][i]=='s'){ 
+             square->obj[i][j]->Tip=square->obj[i][j]->s;
+             continue;
+        }  
+      	 //телепорт
+       if (arr[j+6][i]=='t'){
+      	    square->obj[i][j]->Tip=square->obj[i][j]->t;
+            continue;
+      	 }
+      	 //враг
+      	if (arr[j+6][i]=='y'){
+      	    square->obj[i][j]->Tip=square->obj[i][j]->vrag;
+      	    if (j==9)
+      	        x_e1 = i;
+      	    if (j==6)
+      	        x_e2 = i;
+      	    if (j==3)
+      	        x_e3 = i;
+      	    
+            continue;
+      	 }
+      	     //иначе
+             square->obj[i][j]->Tip=square->obj[i][j]->o;
+        }
+    	}
+      	
+    	else{
+    	x_e1 = 9;
+    	x_e2 = 9;
+    	x_e3 = 9;
+    	  	
     	for (int j = 0; j < y; j++) {
     	//вход
           if(i==0 && j==0){
                square->obj[0][0]->Tip=square->obj[0][0]->i;
+            	continue;
+      	   }
+          //выход
+          if(i==x-1 && j==y-1){
+              square->obj[i][j]->Tip=square->obj[i][j]->e;
+              continue;
+          }
+      	 //монеты
+      	 if ((i==3&&j==0) || (i==1&&j==7) || (i==7&&j==5) || (i==5&&j==11)){
+             square->obj[i][j]->Tip=square->obj[i][j]->m;
+             continue;
+     	  }
+      	 //камни
+      	 if ((i==4&&j==2) || (i==7&&j==1) || (i==6&&j==8) || (i==0&&j==11)){ 
+             square->obj[i][j]->Tip=square->obj[i][j]->s;
+             continue;
+        }  
+      	 //телепорт
+       if ((i==3&&j==4) || (i==8 &&j==10)){
+      	    square->obj[i][j]->Tip=square->obj[i][j]->t;
+            continue;
+      	 }
+      	 //враг
+      	if ((i==9&&j==3) || (i==9&&j==6) ||(i==9&&j==9)){
+      	    square->obj[i][j]->Tip=square->obj[i][j]->vrag;
+            continue;
+      	 }
+      	     //иначе
+             square->obj[i][j]->Tip=square->obj[i][j]->o;
+        }
+    	
+    	}
+    	}	
+    	
+    for (int i = 0; i < x; i++) {    	
+    	for (int j = 0; j < y; j++) {
+    	//вход
+          if(square->obj[i][j]->Tip==square->obj[i][j]->i){
                rect[i][j].setFillColor(sf::Color(0, 0, 200));
                rect[i][j].setSize(sf::Vector2f(size, size));
     	       rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
             	continue;
       	   }
           //выход
-          if(i==x-1 && j==y-1){
-              square->obj[i][j]->Tip=square->obj[i][j]->e;
+          if(square->obj[i][j]->Tip==square->obj[i][j]->e){
               rect[i][j].setFillColor(sf::Color(200, 0, 0));
               rect[i][j].setSize(sf::Vector2f(size, size));
     	      rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
               continue;
           }
       	 //монеты
-      	 if ((i==3&&j==0) || (i==1&&j==7) || (i==7&&j==5) || (i==5&&j==11)){
-             square->obj[i][j]->Tip=square->obj[i][j]->m;
+      	 if (square->obj[i][j]->Tip==square->obj[i][j]->m){
              rect[i][j].setTexture(&texture[2]);
              rect[i][j].setSize(sf::Vector2f(size, size));
     	     rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
              continue;
      	  }
       	 //камни
-      	 if ((i==4&&j==2) || (i==7&&j==1) || (i==6&&j==8) || (i==0&&j==11)){ 
-             square->obj[i][j]->Tip=square->obj[i][j]->s;
+      	 if (square->obj[i][j]->Tip==square->obj[i][j]->s){ 
              rect[i][j].setTexture(&texture[4]);
              rect[i][j].setSize(sf::Vector2f(size, size));
     	     rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
@@ -68,33 +159,35 @@ void Game::CreateSquare(){
         }
       	    
       	 //телепорт
-       if ((i==3&&j==4) || (i==8 &&j==10)){
-      	    square->obj[i][j]->Tip=square->obj[i][j]->t;
+       if (square->obj[i][j]->Tip==square->obj[i][j]->t){
             rect[i][j].setTexture(&texture[3]);
             rect[i][j].setSize(sf::Vector2f(size, size));
     	    rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
             continue;
       	 }
       	 //враг
-      	if ((i==9&&j==3) || (i==9&&j==6) ||(i==9&&j==9)){
-      	    square->obj[i][j]->Tip=square->obj[i][j]->vrag;
-            rect[i][j].setTexture(&texture[1]);
+      	if (square->obj[i][j]->Tip==square->obj[i][j]->vrag){
+      	    rect[i][j].setTexture(&texture[1]);
             rect[i][j].setSize(sf::Vector2f(size, size));
     	    rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
             continue;
       	 }
       	 
       	     //иначе
-             square->obj[i][j]->Tip=square->obj[i][j]->o;
              rect[i][j].setTexture(&texture[1]);	 
              rect[i][j].setSize(sf::Vector2f(size, size));
     	     rect[i][j].setPosition(sf::Vector2f(size * i + 2*(i+1), size * j + 2*(j+1)));
         }
     }        
     drawPlayer();
-    drawEnemy(9,9);
-    drawEnemy(9,6);
-    drawEnemy(9,3);
+    drawEnemy(x_e1,9);
+    drawEnemy(x_e2,6);
+    drawEnemy(x_e3,3);
+    
+    enemy1.x_e = x_e1;
+    enemy2.x_e = x_e2;
+    enemy3.x_e = x_e3;    
+    
     while (window.isOpen())
     {
         while (window.pollEvent(event))
@@ -132,6 +225,7 @@ void Game::CreateSquare(){
     			
         window.display();
     }
+    
 }
 
 void Game::Move(){
@@ -178,7 +272,6 @@ void Game::Move(){
     if(!enemy1.killed){
     int x_e1 = enemy1.GetX();
     int y_e1 = enemy1.GetY();
-    cout <<"!!!\n";
     square->obj[x_e1][y_e1]->Tip=square->obj[x_e1][y_e1]->o;
         for(int z = 0; z<10; z++){
         if ((z!=player.y_now)||(y_e1!=player.x_now))
@@ -190,9 +283,7 @@ void Game::Move(){
     drawEnemy(x_e1, y_e1);
     square->obj[x_e1][y_e1]->Tip=square->obj[x_e1][y_e1]->vrag;
    if (enemy1.there){
-       // behavior.live();
         player.Pull_Live();
-        //cout <<"Yes!!\n";
     }
     }
     
@@ -210,9 +301,7 @@ void Game::Move(){
     drawEnemy(x_e2, y_e2);
     square->obj[x_e2][y_e2]->Tip=square->obj[x_e2][y_e2]->vrag;
     if (enemy2.there){
-        //behavior.money();
         player.Pull_Money();
-        //cout <<"Yes!!\n";
     }
     }
     if(!enemy3.killed){
@@ -231,9 +320,7 @@ void Game::Move(){
     drawEnemy(x_e3, y_e3);
     square->obj[x_e3][y_e3]->Tip=square->obj[x_e3][y_e3]->vrag;
     if (enemy3.there){
-        //behavior.position();
         player.start();
-        //cout <<"Yes3!!\n";
     }
     }
     
@@ -252,28 +339,19 @@ void Game::Info_for_safe(){
     for (int i = 0; i<13; i++){
     for (int j = 0; j<10; j++){
     if (square->obj[j][i]->Tip==square->obj[j][i]->i)
-    	//cout <<"i";
         addToFile("i");
     if (square->obj[j][i]->Tip==square->obj[j][i]->e)
-    	//cout <<"e";
     	addToFile("e");
     if (square->obj[j][i]->Tip==square->obj[j][i]->o)
     	addToFile("o");
-    	//cout <<"o";    	
     if (square->obj[j][i]->Tip==square->obj[j][i]->s)
     	addToFile("s");
-    	//cout <<"s"; 
     if (square->obj[j][i]->Tip==square->obj[j][i]->m)
     	addToFile("m");
-    	//cout <<"m"; 
     if (square->obj[j][i]->Tip==square->obj[j][i]->t)
-    	addToFile("t");
-    	//cout <<"t";   
+    	addToFile("t");   
     if (square->obj[j][i]->Tip==square->obj[j][i]->vrag)
-    	addToFile("vrag");
-    	//cout <<"vrag";   
-    	//o, s, m, t, i, e, vrag
-    addToFile(" ");	
+    	addToFile("y");
     	
     }
     addToFile("\n");
@@ -284,7 +362,7 @@ void Game::Info_for_safe(){
 
 void Game::addToFile(std::string str)
 {
-    safe safe(0);
+    safe safe;
     safe.addLog(str);
 }
 
@@ -337,8 +415,6 @@ void Game::drawEnemy(int x_e, int y_e){
 void Game::clearEnemy(int x_e, int y_e){
 
 	rect[x_e][y_e].setTexture(&texture[1]);
-	//cout << "Очислил " << x_e<< "   " <<y_e << "\n";
-
 }
 
 void Game::clearCell(int x_c, int y_c){

@@ -4,9 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include <unistd.h>
 #include "squareiterator.h"
-//#include "player.h"
 #include "enemy.h"
 #include "safe.h"
+#include "run.h"
 
 class Game
 {

@@ -9,15 +9,14 @@ using namespace std;
 class safe
 {
     public:
-        safe(int clearFile);
+        safe();
         ~safe();
        void addLog(string log); //для вывода
-       static bool clearFile;
+       //int clearFile;
        void check();
     private:
-   
-   	 ofstream outputFile;
-   	 //static bool clearFile;
+   	 ofstream *outputFile;
+   	 static bool clearFile;
 };
 
 #endif

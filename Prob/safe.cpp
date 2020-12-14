@@ -1,48 +1,42 @@
 #include "safe.h"
-
 bool safe::clearFile = true;
 
-safe::safe(int mode)
+safe::safe()
 {
 if (clearFile){ 
-    std::ofstream outputFile("Safe.txt", std::ofstream::trunc); // открываем, удаляем содержимое файла, если он существует
+    //outputFile = new ofstream("Safe.txt", std::fstream::out | std::fstream::trunc); // открываем, удаляем содержимое файла, если он существует
+     outputFile = new ofstream ("Safe.txt", std::ios::out|std::ios::trunc); // открываем, удаляем содержимое файла, если он существует
     clearFile=false;
     }
 else{ 
-    std::ofstream outputFile ("Safe.txt",  std::ofstream::app); // открываем для записи в конец
+    outputFile = new ofstream ("Safe.txt", std::ios::app|std::ios::in); 
+    //outputFile = new ofstream("Safe.txt", std::fstream::out | std::fstream::in); // открываем для записи в конец
     clearFile = false;
     }
-
-/*else {
-std::ofstream outputFile ("Safe.txt",  std::ofstream::in); // открываем для записи в конец
-    clearFile = false;
-
-}
-*/
-
-
+    
 }
 
 safe::~safe()
 {
-    outputFile.close();
+    outputFile->close();
 }
 
 void safe::check(){
-/* if(!feof(outputFile))
+ if(!feof((FILE *)outputFile))
 {  
-            std::string line;
-        while (getline(outputFile, line))
+           /* std::string line;
+            std::getline((std::stringstream&)*outputFile, line);*/
+       /* while (getline(*outputFile, line))
         {
             std::cout << line << std::endl;
-        }
-    cout<<"GGG";
-}  */
+        }*/
+   
+}  
 }
 
 
 void safe::addLog(string log)
 {
-   outputFile << log ;
+    *outputFile << log ;
 }
 

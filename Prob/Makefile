@@ -1,6 +1,6 @@
-all: main.o cell.o square.o game.o player.o squareiterator.o element.o element_factory.o logfile.o logplayer.o observer.o observer_act.o observer_killed.o command.o command_move.o command_info.o command_createsquare.o command_drawplayer.o command_gameend.o command_clearcell.o facade.o enemy.o behavior.o safe.o
+all: main.o cell.o square.o game.o player.o squareiterator.o element.o element_factory.o logfile.o logplayer.o observer.o observer_act.o observer_killed.o command.o command_move.o command_info.o command_createsquare.o command_drawplayer.o command_gameend.o command_clearcell.o facade.o enemy.o behavior.o safe.o run.o
 
-	g++ main.o cell.o square.o game.o player.o squareiterator.o element.o logfile.o element_factory.o logplayer.o observer.o observer_act.o observer_killed.o command.o command_gameend.o command_info.o command_move.o command_createsquare.o command_clearcell.o facade.o command_drawplayer.o enemy.o behavior.o safe.o -o game  -L/home/white_lilac/SFML-2.5.1/lib -lsfml-graphics -lsfml-window -lsfml-system
+	g++ main.o cell.o square.o game.o player.o squareiterator.o element.o logfile.o element_factory.o logplayer.o observer.o observer_act.o observer_killed.o command.o command_gameend.o command_info.o command_move.o command_createsquare.o command_clearcell.o facade.o command_drawplayer.o enemy.o behavior.o safe.o run.o -o game  -L/home/white_lilac/SFML-2.5.1/lib -lsfml-graphics -lsfml-window -lsfml-system
 
 main.o: main.cpp game.h
 	g++ -c main.cpp -I/home/white_lilac/SFML-2.5.1/include -lsfml-graphics
@@ -75,6 +75,11 @@ behavior.o: behavior.cpp behavior.h player.h
 	
 safe.o: safe.cpp safe.h
 	g++ -c safe.cpp
+	
+	
+run.o: run.cpp run.h
+	g++ -c run.cpp
+	
 
 clean:
 	rm -rf *.o
